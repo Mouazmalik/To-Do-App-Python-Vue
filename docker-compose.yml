@@ -1,0 +1,24 @@
+version: '3'
+services:
+  frontend:
+    build:
+      context: ./todo-app
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173" 
+    networks:
+      - todoappnetwork
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./Todo
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"  
+    networks:
+      - todoappnetwork
+
+networks:
+  todoappnetwork:
