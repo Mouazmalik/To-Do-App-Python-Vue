@@ -12,7 +12,7 @@ This Todo App is a full-stack application that combines the power of Vue.js and 
 
 ## Requirements
 
-- Node.js for frontend development.
+- Node.js for back-end development.
 - Python and Django for the backend.
 - Vue.js and Vuetify for the frontend.
 
