@@ -91,7 +91,7 @@ export default {
 
           this.$router.push("/");
         })
-        .catch((error) => {
+        .catch((error) => { 
           console.error("Error:", error);
         });
     },
