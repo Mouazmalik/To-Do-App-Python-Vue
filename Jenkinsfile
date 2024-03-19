@@ -33,12 +33,12 @@ pipeline {
     post {
         success {
             emailext body: 'Your build was successful.',
-                subject: 'Jenkins Build Success',
+                subject: 'Jenkins',
                 to: 'touseefhussainlqp@gmail.com'
         }
         failure {
             emailext body: 'Your build failed. Please check Jenkins for details.',
-                subject: 'Jenkins Build Failure',
+                subject: 'Jenkins',
                 to: 'touseefhussainlqp@gmail.com'
         }
     }
