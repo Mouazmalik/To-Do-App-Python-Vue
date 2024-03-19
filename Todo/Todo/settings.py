@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt'
 ]
 
-MIDDLEWARE = [
+MIDDLEWARE = [ 
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
@@ -136,11 +136,8 @@ REST_FRAMEWORK = {
 
 }
 
-CORS_ORIGIN_ALLOW_ALL = True
-# CORS_ALLOWED_ORIGINS = [
-#     "http://localhost:5173",
-#     "http://localhost:5173",
-#     "http://127.0.0.1:9001"
-# ]
-
+CORS_ALLOWED_ORIGINS = [
+   "http://localhost:5173", 
+    
+]
 CSRF_TRUSTED_ORIGINS = ['http://localhost:5173']

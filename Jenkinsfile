@@ -1,0 +1,34 @@
+pipeline {
+    agent any
+    stages {
+        stage("CLONE CODE 😍") {
+            steps {
+                echo "Cloning code from GitHub"
+                git url: "https://github.com/itxTouseef74/To-Do-App-Python-Vue.git", branch: "main"
+            }
+        }
+        stage("Build") {
+            steps {
+                echo "Building the images"
+                sh "docker build -t full-stack ./todo-app"
+            }
+        }
+        stage("Push to Docker Hub") {
+            steps {
+                echo "Pushing images to Docker Hub"
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                    sh "docker tag full-stack touseeef/full-stack:latest "
+                    sh "docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD"
+                    
+                    sh "docker push touseeef/full-stack:latest"
+                }
+            }
+        }
+        stage("Deploy") {
+            steps {
+                echo "Deploying the code"
+                sh "docker compose stop && docker compose up -d"
+            }
+        }
+    }
+}
