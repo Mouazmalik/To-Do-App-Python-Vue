@@ -19,7 +19,6 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
                     sh "docker tag full-stack touseeef/full-stack:latest "
                     sh "docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD"
-                    
                     sh "docker push touseeef/full-stack:latest"
                 }
             }
@@ -29,6 +28,18 @@ pipeline {
                 echo "Deploying the code"
                 sh "docker compose stop && docker compose up -d --build"
             }
+        }
+    }
+    post {
+        success {
+            emailext body: 'Your build was successful.',
+                subject: 'Jenkins Build Success',
+                to: 'touseefhussainlqp@gmail.com'
+        }
+        failure {
+            emailext body: 'Your build failed. Please check Jenkins for details.',
+                subject: 'Jenkins Build Failure',
+                to: 'touseefhussainlqp@gmail.com'
         }
     }
 }
