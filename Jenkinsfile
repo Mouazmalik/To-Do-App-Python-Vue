@@ -4,7 +4,7 @@ pipeline {
         stage("CLONE CODE 😍") {
             steps {
                 echo "Cloning code from GitHub"
-                git url: "https://github.com/itxTouseef74/To-Do-App-Python-Vue", branch: "master"
+                git url: "https://github.com/itxTouseef74/To-Do-App-Python-Vue.git", branch: "main"
             }
         }
         stage("Build") {
