@@ -1,7 +1,7 @@
 <template>
   <v-container fill-height justify="center" align="center">
     <v-row justify="center" align="center">
-      <v-col class="text-h4"> TPDP APP </v-col>
+      <v-col class="text-h4"> NODE APP </v-col>
     </v-row>
   </v-container>
 
