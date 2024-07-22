@@ -1,0 +1,22 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 20 # Adjust the Node.js version as necessary
+    commands:
+      - echo Installing dependencies...
+      - cd todo-app
+      - npm install
+
+  build:
+    commands:
+      - echo Building the application...
+      - npm run build
+
+artifacts:
+  files:
+    - '**/*'
+  base-directory: todo-app/dist
+  discard-paths: yes
+
