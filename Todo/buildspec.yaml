@@ -1,0 +1,36 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 20
+      python: 3.11 # Replace with the specific Python version you are using
+    commands:
+      - echo Installing frontend dependencies...
+      - cd todo-app
+      - npm install
+      - cd ..
+      - echo Installing backend dependencies...
+      - pip install -r Todo/requirements.txt
+
+  build:
+    commands:
+      - echo Building frontend application...
+      - cd todo-app
+      - npm run build
+      - cd ..
+      - echo Applying backend migrations...
+      - cd Todo
+      - python manage.py makemigrations
+      - python manage.py migrate
+
+  post_build:
+    commands:
+      - echo Starting Django development server...
+      - python manage.py runserver &
+
+artifacts:
+  files:
+    - '**/*'
+  base-directory: todo-app/dist
+  discard-paths: yes
