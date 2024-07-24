@@ -12,6 +12,7 @@ phases:
       - cd ..
       - echo Installing backend dependencies...
       - pip install -r Todo/requirements.txt
+      - pip install setuptools # Added line for installing setuptools
 
   build:
     commands:
@@ -26,11 +27,11 @@ phases:
 
   post_build:
     commands:
-      - echo Starting Django development server...
-      - python3 manage.py runserver &
+      - echo Build completed!
 
 artifacts:
   files:
     - '**/*'
   base-directory: todo-app/dist
   discard-paths: yes
+
