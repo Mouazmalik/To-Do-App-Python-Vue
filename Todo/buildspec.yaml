@@ -21,13 +21,13 @@ phases:
       - cd ..
       - echo Applying backend migrations...
       - cd Todo
-      - python manage.py makemigrations
-      - python manage.py migrate
+      - python3 manage.py makemigrations
+      - python3 manage.py migrate
 
   post_build:
     commands:
       - echo Starting Django development server...
-      - python manage.py runserver &
+      - python3 manage.py runserver &
 
 artifacts:
   files:
