@@ -7,21 +7,21 @@ files:
 
 hooks:
   BeforeInstall:
-    - location: /c/Users/MouazBabur/OneDrive - tylextech.com/desktop/todo/To-Do-App-Python-Vue/scripts/install.sh
+    - location: scripts/install.sh
       timeout: 300
       runas: root
 
   AfterInstall:
-    - location: /c/Users/MouazBabur/OneDrive - tylextech.com/desktop/todo/To-Do-App-Python-Vue/scripts/start.sh
+    - location: scripts/start.sh
       timeout: 300
       runas: root
 
   ApplicationStart:
-    - location: /c/Users/MouazBabur/OneDrive - tylextech.com/desktop/todo/To-Do-App-Python-Vue/scripts/start-backend.sh
+    - location: scripts/start-backend.sh
       timeout: 300
       runas: root
 
   ValidateService:
-    - location: /c/Users/MouazBabur/OneDrive - tylextech.com/desktop/todo/To-Do-App-Python-Vue/scripts/validate.sh
+    - location: scripts/validate.sh
       timeout: 300
       runas: root
