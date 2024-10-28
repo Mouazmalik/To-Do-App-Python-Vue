@@ -1,0 +1,34 @@
+name: Build and Push Docker Image to GCP Artifact Registry
+
+on:
+  push:
+    branches:
+      - main # Change this to your preferred branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Log in to GCP
+        env:
+          GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+          GCP_SERVICE_ACCOUNT_JSON: ${{ secrets.GCP_SERVICE_ACCOUNT_JSON }}
+        run: |
+          echo "${GCP_SERVICE_ACCOUNT_JSON}" > "${HOME}/service-account.json"
+          gcloud auth activate-service-account --key-file="${HOME}/service-account.json"
+          gcloud auth configure-docker us-east4-docker.pkg.dev # Change region accordingly
+
+      - name: Build Docker Image
+        run: |
+          docker build -t us-east4-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/my-repo/my-image:latest .
+
+      - name: Push Docker Image
+        run: |
+          docker push us-east4-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/my-repo/my-image:latest
